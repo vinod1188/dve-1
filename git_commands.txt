@@ -1,0 +1,303 @@
+git init  (To intilize Empty Git repo)
+
+git config --global user.name "Prasad Polarapu"
+git config --global user.email "devopstraining2015@gmail.com"
+
+git config --list
+
+git config --global --unset user.name
+git config --global --unset user.email
+
+==================
+touch file1
+ls
+git status
+git add file1
+git status
+git commit -m "sample-commit" file1
+git status
+git log
+git show
+git show cid
+
+
+-------------------
+git clone https://github.com/polarapu/batch96.git
+ls
+cd batch96
+touch file1
+ls
+git status
+git add file1
+git status
+git commit -m "sample-commit" file1
+git status
+git log
+git show
+git show cid
+git push
+
+===============
+
+touch file2 file3 file4
+ls
+git status
+git add file2 file3 file4
+or
+git add .
+or
+git add *
+or
+git add -A
+git status
+git commit -m "Smaple commit"
+git status
+git log
+git show
+
+================
+rm file1  (to delete a file)
+ls
+git status
+git add .
+git commit -m "deleted file1"
+git push
+
+================
+mkdir dir1
+ls
+cd dir1
+touch f1 f2
+cd ..
+
+or
+touch dir1/f1 dir1/f2
+
+git status
+
+git add .
+
+or
+
+git add dir1/f1
+git add dir1/f2
+
+git status
+git commit -m "sample commit"
+git push
+
+==========================
+git clone https://github.com/polarapu/batch96.git
+ls
+cd batch96
+ls
+touch prasad
+ls
+git status
+git add .
+git status
+git commit -m "test commit"
+git status
+git push
+
+git push
+remote: Permission to polarapu/batch96.git denied to ravikrdev.
+fatal: unable to access 'https://github.com/polarapu/batch96.git/': The requested URL returned error: 403
+
+git push
+
+To https://github.com/polarapu/batch96.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/polarapu/batch96.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+git pull --rebase
+git push
+
+
+Branch
+======
+git branch
+git branch release1
+git branch
+git checkout release1
+git merge main
+
+git branch -d release1
+
+git push origin release1  (to upload into git-hub)
+or
+git push path/of/crepo release1
+
+git push origin -d release1  (to delete branch on git-hub)
+
+
+.git/config
+===========
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+[branch "release2"]
+	remote = origin
+	merge = refs/heads/release2
+[branch "release1"]
+	remote = origin
+	merge = refs/heads/release1
+
+Logs
+====
+git log
+git log -n
+git log --oneline
+git log --oneline -n
+git log --author=Prasad
+git log --author=Prasad -n
+git log --author=Prasad --oneline
+git log --author=Prasad --oneline -n
+
+git log --since=yy-mm-dd
+or
+git log --after=yy-mm-dd
+
+git log --until=yy-mm-dd
+or
+git log --before=yy-mm-dd
+
+git log --since=yy-mm-dd --until=yy-mm-dd
+or
+git log --after=yy-mm-dd --before=yy-mm-dd
+
+git log --since=yy-mm-dd --until=yy-mm-dd --author=Prasad
+
+git log --since="yy-mm-dd 10:00" --until="yy-mm-dd 14:00"
+
+git log --grep "label"
+
+git log -- file file-name
+
+
+Conflicts
+=========
+
+Tags
+====
+git tag
+git tag T-1.0
+git show T-1.0
+git tag -d T-1.0
+
+git tag T-1.0 Cid
+git push origin T-1.0
+or
+git push --tags
+
+git checkout T-1.0
+git checkout main
+
+git push origin -d T-1.0  (to delete tag)
+
+
+Alias
+======
+git status
+git config --global alias.s "status"
+git s
+
+git log --oneline
+git config --global alias.l1 "log --oneline"
+git l1
+
+git config --list
+git config --global alias.cl "config --list"
+git cl
+
+git commit -m "Sample-Data"
+git config --global alias.cmt "commit -m "sample-data""
+git cmt
+
+git config --global --unset alias.l1  (to remove alias)
+
+Stash Memory
+=============
+git stash list
+git stash save "label1"
+git stash show stash@{x}
+git stash show -p stash@{x}
+
+POP, APPLY, DROP
+-----------------
+
+POP = CUT
+=========
+git stash pop
+git stash pop stash@{x}
+
+APPLY = COPY
+=============
+git stash apply
+git stash apply stash@{x}
+
+DROP = DELETE
+=============
+git stash drop
+git stash drop stash@{x}
+
+Amend
+=====
+git commit --amend -m "label" file-name
+
+Reset
+------
+git add file1 (workspace to staging)
+git reset head file1  (staging to workspace)
+
+git commit -m "label" file1  (staging to local)
+git reset --soft cid  (n-1)  (local to staging)
+
+git reset --mixed cid  (local to workspace including staging files)
+git reset --hard cid  (it will delete commit and commit data)
+
+.gitignore
+==========
+testfile1
+testfile2
+
+===============
+revert
+======
+git revert cid
+
+cherry-pick
+============
+git cherry-pick cid
+
+git diff
+========
+git diff file1 file2
+git diff branch1 branch2
+git diff file1
+
+
+merge vs rebase
+===============
+git merge branch
+git rebase branch
+
+multi commit msg
+================
+git commit -m "label1" -m "label2" -m "label3"
+
+fetch
+=====
+git fetch
+
+git pull = git fetch + git merge
+
+origin
+======
+git branch -r
+git branch -a
